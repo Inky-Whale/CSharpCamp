@@ -10,9 +10,9 @@ class Program
         ILoggerService fileLoggerService = new FileLoggerService();
 
         BasvuruManager basvuruManager = new BasvuruManager();
-        basvuruManager.BasvuruYap(ihtiyacKrediManager, new DatabaseLoggerService());
-        basvuruManager.BasvuruYap(konutKrediManager, fileLoggerService);
-        basvuruManager.BasvuruYap(new EsnafKrediManager(), new SmsLoggerService());
+        basvuruManager.BasvuruYap(ihtiyacKrediManager, new List<ILoggerService>());
+        basvuruManager.BasvuruYap(konutKrediManager, new List<ILoggerService>(){new SmsLoggerService(), fileLoggerService});
+        basvuruManager.BasvuruYap(new EsnafKrediManager(), new List<ILoggerService>());
         List<IKrediManager> krediler = new List<IKrediManager>() {ihtiyacKrediManager, konutKrediManager, tasitKrediManager };
 
 
